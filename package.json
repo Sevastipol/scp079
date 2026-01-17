@@ -1,5 +1,5 @@
 {
-  "name": "island-builder-multiplayer",
+  "name": "bedwars-multiplayer",
   "version": "1.0.0",
   "description": "Multiplayer 3D Island Builder with Socket.io",
   "main": "server.js",
