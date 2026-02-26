@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Sound Test</title>
 </head>
-</body>
+<body>
+
+    <button id="playBtn">Play Sound</button>
+
     <script>
         /**
- * Play a sound effect.
- * @param {string} soundSrc - The path to the sound file (e.g., 'sounds/ding.mp3').
- */
-function playSound(soundSrc) {
-  // Create a new Audio object
-  let audio = new Audio(soundSrc);
+         * Play a sound effect.
+         * @param {string} soundSrc - The path to the sound file.
+         */
+        function playSound(soundSrc) {
+            let audio = new Audio(soundSrc);
+            
+            // play() returns a promise, which is good for debugging
+            audio.play().catch(error => {
+                console.log("Playback failed. Check if the file exists or if you've interacted with the page.");
+            });
+        }
 
-
-  
-
-  // Load the audio to start the process
-  audio.load();
-}
-
-
-  playSound('1.mp3');
+        // Trigger the sound via a button click to satisfy browser security
+        document.getElementById('playBtn').addEventListener('click', () => {
+            playSound('1.mp3');
+        });
     </script>
+</body>
 </html>
