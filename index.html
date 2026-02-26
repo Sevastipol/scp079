@@ -22,9 +22,9 @@
         // The listener will now self-destruct after the first successful click
         btn.addEventListener('click', function() {
             setTimeout(() => {
-            playSound('1.mp3');
+            playSound('awake1.mp3');
             setTimeout(() => {
-                playSound('2.mp3');
+                playSound('awake2.mp3');
             }, timer());
             }, timer());
         }, { once: true }); 
