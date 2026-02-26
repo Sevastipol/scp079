@@ -13,19 +13,11 @@
          * Play a sound effect.
          * @param {string} soundSrc - The path to the sound file.
          */
-        function playSound(soundSrc) {
-            let audio = new Audio(soundSrc);
-            
-            // play() returns a promise, which is good for debugging
-            audio.play().catch(error => {
-                console.log("Playback failed. Check if the file exists or if you've interacted with the page.");
-            });
-        }
-
-        // Trigger the sound via a button click to satisfy browser security
-        document.getElementById('playBtn').addEventListener('click', () => {
-            playSound('1.mp3');
-        });
+       // This function "primes" the audio engine on the first click
+window.addEventListener('click', function() {
+    // You can play your sound here
+    playSound('1.mp3');
+}, { once: true }); // 'once: true' ensures this only runs on the very first click
     </script>
 </body>
 </html>
