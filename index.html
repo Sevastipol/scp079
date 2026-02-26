@@ -12,7 +12,7 @@
         function playSound(soundSrc) {
             let audio = new Audio(soundSrc);
         }
-window.addEventListener('click', function() {
+playbtn.addEventListener('click', function() {
     // You can play your sound here
     playSound('1.mp3');
 }, { once: true }); // 'once: true' ensures this only runs on the very first click
