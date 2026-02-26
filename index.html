@@ -6,21 +6,23 @@
 </head>
 <body>
 
-    <button id="playBtn">Play Sound</button>
+    <button id="playBtn">Play Sound (Once Only)</button>
 
     <script>
         function playSound(soundSrc) {
             let audio = new Audio(soundSrc);
-            audio.play(); // This is the missing piece!
+            audio.play().catch(error => {
+                console.error("Playback failed:", error);
+            });
         }
 
-        // Correct way to target the button
         const btn = document.getElementById('playBtn');
-        
+
+        // The listener will now self-destruct after the first successful click
         btn.addEventListener('click', function() {
             playSound('1.mp3');
-        }); 
-        // Removed { once: true } so you can test it multiple times
+            console.log("Button clicked! This listener is now removed.");
+        }, { once: true }); 
     </script>
 </body>
 </html>
