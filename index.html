@@ -17,11 +17,14 @@
         }
 
         const btn = document.getElementById('playBtn');
+        let timer = Math.round(Math.random() * 3000)
 
         // The listener will now self-destruct after the first successful click
         btn.addEventListener('click', function() {
             playSound('1.mp3');
-            console.log("Button clicked! This listener is now removed.");
+            setTimeout(() => {
+                playSound('2.mp3');
+            }, timer);
         }, { once: true }); 
     </script>
 </body>
