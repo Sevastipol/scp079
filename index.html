@@ -9,18 +9,7 @@
     <button id="playBtn">Play Sound (Once Only)</button>
 
     <script>
-        function playSound(soundSrc) {
-            let audio = new Audio(soundSrc);
-            audio.play().catch(error => {
-                console.error("Playback failed:", error);
-            });
-        }
-
-        const btn = document.getElementById('playBtn');
-        let timer = (multi = 1) => { return Math.round((Math.random() * 3000) * multi) }
-
-        function showFace() {
-            if (typeof scp079 === 'undefined') {
+        if (typeof scp079 === 'undefined') {
 
 var scp079 = document.createElement('div');
 
@@ -56,10 +45,19 @@ function evokescp079() {
         evokescp079()
     }, 50)
     }, 150)
-}
+        function playSound(soundSrc) {
+            let audio = new Audio(soundSrc);
+            audio.play().catch(error => {
+                console.error("Playback failed:", error);
+            });
+        }
+
+        const btn = document.getElementById('playBtn');
+        let timer = (multi = 1) => { return Math.round((Math.random() * 3000) * multi) }
+
+        
 
 document.body.appendChild(scp079);
-evokescp079();
         }
 
         // The listener will now self-destruct after the first successful click
@@ -67,10 +65,10 @@ evokescp079();
             setTimeout(() => {
             playSound('awake1.mp3');
             setTimeout(() => {
-                playSound('1.mp3');
+                playSound('awake2.mp3');
                 setTimeout(() => {
-                showFace();
-                    playSound('awake2.mp3');
+                evokescp079();
+                    playSound('1.mp3');
             }, timer(2));
             }, timer());
             }, timer());
