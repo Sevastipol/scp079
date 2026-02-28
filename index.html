@@ -10,41 +10,48 @@
 
     <script>
         if (typeof scp079 === 'undefined') {
+            var scp079 = document.createElement('div');
+            scp079.style.backgroundImage = 'url("https://www.jammable.com/cdn-cgi/image/width=640,quality=75,format=webp/https://images.jammable.com/voices/ca6d0b93-b4ef-42aa-9b10-867e45482b79.png")';
+            scp079.style.backgroundSize = 'cover';
+            scp079.style.backgroundRepeat = 'no-repeat';
+            scp079.style.backgroundPosition = 'center'; // Fixed typo here
+            scp079.style.position = 'fixed';   
+            scp079.style.top = '0';
+            scp079.style.left = '0';
+            scp079.style.width = '100vw';
+            scp079.style.height = '100vh';
+            scp079.style.zIndex = '2147483647'; 
+            scp079.className = 'scp079';
+            var flashTimer = 1;
+        } else {
+            flashTimer = 1;
+        }
 
-var scp079 = document.createElement('div');
+        function evokescp079() {
+            // Append it to the body when the function is first called
+            if (!document.body.contains(scp079)) {
+                document.body.appendChild(scp079);
+            }
 
-scp079.style.backgroundImage = 'url("https://www.jammable.com/cdn-cgi/image/width=640,quality=75,format=webp/https://images.jammable.com/voices/ca6d0b93-b4ef-42aa-9b10-867e45482b79.png")';
-scp079.style.backgroundSize = 'cover';
-scp079.style.backgroundRepeat = 'no-repeat';
-scp079.style.backgroundPositon = 'center'
-scp079.style.position = 'fixed';   
-scp079.style.top = '0';
-scp079.style.left = '0';
-scp079.style.width = '100vw';
-scp079.style.height = '100vh';
-scp079.style.zIndex = '2147483647'; 
-scp079.className = 'scp079';
-var flashTimer = 1;
-} else {
-    flashTimer = 1;
-} /* Block scoped variables such as Const and Let wouldn't work */
+            if (flashTimer < 0) {
+                if (document.body.querySelector('.scp079')) {
+                    document.body.querySelector('.scp079').remove();
+                }
+                return;
+            }
+            scp079.style.opacity = flashTimer;
+            flashTimer -= 0.8;
+            setTimeout(() => {
+                flashTimer -= 0.1;
+                scp079.style.opacity = flashTimer;
+                setTimeout(() => {
+                    flashTimer -= 0.1;
+                    scp079.style.opacity = flashTimer;
+                    evokescp079();
+                }, 50);
+            }, 150);
+        } // Closed the function here so the rest is accessible
 
-function evokescp079() {
-    if ( flashTimer < 0) {
-        document.body.querySelector('.scp079').remove();
-        return;
-    }
-    scp079.style.opacity = flashTimer;
-    flashTimer -= 0.8;
-    setTimeout(() => {
-        flashTimer -= 0.1;
-        scp079.style.opacity = flashTimer;
-        setTimeout(() => {
-            flashTimer -= 0.1;
-        scp079.style.opacity = flashTimer;
-        evokescp079()
-    }, 50)
-    }, 150)
         function playSound(soundSrc) {
             let audio = new Audio(soundSrc);
             audio.play().catch(error => {
@@ -53,24 +60,19 @@ function evokescp079() {
         }
 
         const btn = document.getElementById('playBtn');
-        let timer = (multi = 1) => { return Math.round((Math.random() * 3000) * multi) }
-
-        
-
-document.body.appendChild(scp079);
-        }
+        let timer = (multi = 1) => { return Math.round((Math.random() * 3000) * multi) };
 
         // The listener will now self-destruct after the first successful click
         btn.addEventListener('click', function() {
             setTimeout(() => {
-            playSound('awake1.mp3');
-            setTimeout(() => {
-                playSound('awake2.mp3');
+                playSound('awake1.mp3');
                 setTimeout(() => {
-                evokescp079();
-                    playSound('1.mp3');
-            }, timer(2));
-            }, timer());
+                    playSound('awake2.mp3');
+                    setTimeout(() => {
+                        evokescp079();
+                        playSound('1.mp3');
+                    }, timer(2));
+                }, timer());
             }, timer());
         }, { once: true }); 
     </script>
